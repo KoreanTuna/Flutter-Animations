@@ -6,7 +6,7 @@ class TestScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       body: Center(child: Card3D()),
     );
   }
@@ -77,39 +77,53 @@ class _Card3DState extends State<Card3D> with SingleTickerProviderStateMixin {
         transform: Matrix4.identity()
           ..setEntry(3, 2, 0.001)
           ..rotateY(-_drag),
-        child: Container(
-          width: 320,
-          height: 190,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            gradient: RadialGradient(
-              center: gradientCenter,
-              radius: 1.4,
-              colors: [
-                Color(0xFF6366F1),
-                Color(0xFF4F46E5),
-                Color(0xFF1E1B4B).withValues(alpha: 0.45),
-              ],
-              stops: const [0.0, 0.6, 1.0],
-            ),
-            boxShadow: const [
-              BoxShadow(
-                color: Colors.black38,
-                blurRadius: 2,
-                offset: Offset(0, 1),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            /// 카드
+            Padding(
+              padding: EdgeInsets.only(bottom: 68),
+              child: Stack(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(16),
+                    child: Image.asset(
+                      width: 320,
+                      height: 200,
+                      // height: 190,
+                      'assets/ab.png',
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  Container(
+                    width: 320,
+                    height: 200,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      gradient: RadialGradient(
+                        center: gradientCenter,
+                        radius: 1.4,
+                        colors: [
+                          Colors.transparent,
+                          Colors.white.withValues(alpha: 0.08),
+                          Colors.white.withValues(alpha: 0.15),
+                        ],
+
+                        stops: const [0.0, 0.6, 1.0],
+                      ),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black38,
+                          blurRadius: 2,
+                          offset: Offset(0, 1),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
-          child: const Center(
-            child: Text(
-              "Toss",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-              ),
             ),
-          ),
+          ],
         ),
       ),
     );
