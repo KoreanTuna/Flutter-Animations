@@ -24,5 +24,5 @@ FAB를 탭했을때, 화면 전체를 채우면서 새로운 레이아웃이 노
 GIF는 프레임이 낮아서 그런지 좀 이상하게 보여서 영상도 첨부<br>
 
 
-https://github.com/user-attachments/assets/4e43bc90-f82a-4cd6-a104-22eb3a87919a
+https://github.com/user-attachments/assets/4e43bc90-f82a-4cd6-a104-22eb3a87919a <br>
 <img width="330" alt="login" src="https://github.com/user-attachments/assets/fedee170-aabe-4aee-a227-cf1b9a45b928" /><br>
