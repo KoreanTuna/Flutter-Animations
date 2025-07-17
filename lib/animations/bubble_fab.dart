@@ -1,5 +1,24 @@
 import 'package:flutter/material.dart';
 
+class BubbleFabTestScreen extends StatelessWidget {
+  const BubbleFabTestScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        alignment: Alignment.center,
+        children: [
+          Positioned(
+            bottom: 16,
+            child: BubbleFab(),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class BubbleFab extends StatefulWidget {
   const BubbleFab({super.key});
 

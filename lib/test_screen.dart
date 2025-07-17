@@ -1,4 +1,4 @@
-import 'package:animations/animations/bubble_fab.dart';
+import 'package:animations/animations/money_board.dart';
 import 'package:flutter/material.dart';
 
 class TestScreen extends StatelessWidget {
@@ -17,16 +17,8 @@ class TestScreen extends StatelessWidget {
         extendBody: true,
         resizeToAvoidBottomInset: false,
 
-        backgroundColor: Colors.white,
-        body: Stack(
-          alignment: Alignment.center,
-          children: [
-            Positioned(
-              bottom: 16,
-              child: BubbleFab(),
-            ),
-          ],
-        ),
+        backgroundColor: Colors.indigo,
+        body: Center(child: MoneyBoard()),
       ),
     );
   }
