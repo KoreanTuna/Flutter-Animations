@@ -21,4 +21,8 @@ FAB를 탭했을때, 화면 전체를 채우면서 새로운 레이아웃이 노
 전광판의 숫자가 빠르게 증가하면서 글리치효과가 적용된 애니메이션을 만들어보고싶었다.<br>
 속도감을 주기 위해서 모션블러를 줘야할 것 같아서, 숫자 뒤에 사이언컬러 텍스트를 만들었다.<br>
 글리치 효과가 생각처럼 막 자연스럽게 나오지를 않는데, 디테일을 더 추가하면 충분히 가능할것같다. 다 만들고보니 틱톡 이펙트를 만들게된 것 같다<br>
+GIF는 프레임이 낮아서 그런지 좀 이상하게 보여서 영상도 첨부<br>
+
+
+https://github.com/user-attachments/assets/4e43bc90-f82a-4cd6-a104-22eb3a87919a
 <img width="330" alt="login" src="https://github.com/user-attachments/assets/fedee170-aabe-4aee-a227-cf1b9a45b928" /><br>
