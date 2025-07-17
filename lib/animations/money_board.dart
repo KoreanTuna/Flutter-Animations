@@ -88,6 +88,15 @@ class _MoneyAnimationState extends State<MoneyAnimation>
     super.dispose();
   }
 
+  List<Color> _getMotionBlurColors(double opacity) {
+    return [
+      Colors.greenAccent.withValues(alpha: opacity),
+      Colors.cyanAccent.withValues(alpha: opacity),
+      Colors.limeAccent.withValues(alpha: opacity),
+      Colors.redAccent.withValues(alpha: opacity),
+    ];
+  }
+
   Widget _buildBlurredNumber(double value) {
     final formatted = numberFormat.format(value.floor());
 
@@ -106,25 +115,96 @@ class _MoneyAnimationState extends State<MoneyAnimation>
                 style: TextStyle(
                   fontSize: 64,
                   fontWeight: FontWeight.bold,
-                  color: Colors.greenAccent.withValues(alpha: opacity),
+                  color: _getMotionBlurColors(opacity)[i % 4],
                 ),
               ),
             );
           }),
 
         // 메인 숫자 표시 (글리치 효과 적용)
-        _showGlitch
-            ? _buildGlitchText(formatted)
-            : Text(
-                formatted,
-                style: const TextStyle(
-                  fontSize: 66,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                  letterSpacing: 1.2,
-                ),
-              ),
+        if (_showGlitch)
+          _GlitchText(text: formatted)
+        else
+          Text(
+            formatted,
+            style: const TextStyle(
+              fontSize: 66,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+              letterSpacing: 1.2,
+            ),
+          ),
       ],
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: Center(
+        child: _buildBlurredNumber(_animation.value),
+      ),
+    );
+  }
+}
+
+class _GlitchText extends StatefulWidget {
+  final String text;
+  const _GlitchText({super.key, required this.text});
+
+  @override
+  State<_GlitchText> createState() => __GlitchTextState();
+}
+
+class __GlitchTextState extends State<_GlitchText>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _glitchController;
+  late Animation<double> _glitchAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _glitchController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1000),
+    );
+    _glitchAnimation =
+        Tween<double>(begin: 0, end: 1).animate(
+          CurvedAnimation(
+            parent: _glitchController,
+            curve: Curves.bounceInOut,
+          ),
+        )..addListener(() {
+          setState(() {});
+        });
+
+    _startGlitch();
+  }
+
+  @override
+  void dispose() {
+    _glitchController.dispose();
+    super.dispose();
+  }
+
+  void _startGlitch() {
+    _glitchController.reset();
+    _glitchController.forward();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _glitchAnimation,
+      builder: (context, child) {
+        final offset =
+            2.2 * Random().nextDouble() * (Random().nextBool() ? 1 : -1);
+        return Transform.translate(
+          offset: Offset(offset, offset),
+          child: _buildGlitchText(widget.text),
+        );
+      },
     );
   }
 
@@ -179,7 +259,6 @@ class _MoneyAnimationState extends State<MoneyAnimation>
         Text(
           text,
           style: TextStyle(
-            /// 글리치 효과때마다 텍스트 사이즈 랜덤하게 0.9~ 1.1사이로 변경
             fontSize: 66 * randomValue,
             letterSpacing: 1.2 * randomValue,
             fontWeight: FontWeight.bold,
@@ -187,16 +266,6 @@ class _MoneyAnimationState extends State<MoneyAnimation>
           ),
         ),
       ],
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      body: Center(
-        child: _buildBlurredNumber(_animation.value),
-      ),
     );
   }
 }
