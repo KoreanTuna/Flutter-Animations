@@ -1,4 +1,4 @@
-import 'package:animations/animations/card_3d.dart';
+import 'package:animations/animations/bubble_fab.dart';
 import 'package:flutter/material.dart';
 
 class TestScreen extends StatelessWidget {
@@ -6,9 +6,28 @@ class TestScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Colors.white,
-      body: Center(child: Card3D()),
+    return SafeArea(
+      top: false,
+      bottom: false,
+      left: false,
+      right: false,
+      maintainBottomViewPadding: true,
+
+      child: Scaffold(
+        extendBody: true,
+        resizeToAvoidBottomInset: false,
+
+        backgroundColor: Colors.white,
+        body: Stack(
+          alignment: Alignment.center,
+          children: [
+            Positioned(
+              bottom: 16,
+              child: BubbleFab(),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
