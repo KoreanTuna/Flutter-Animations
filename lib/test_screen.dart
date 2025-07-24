@@ -1,3 +1,4 @@
+import 'package:animations/animations/button_size.dart';
 import 'package:animations/animations/layer_3d/layer_3d.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +19,7 @@ class TestScreen extends StatelessWidget {
         resizeToAvoidBottomInset: false,
 
         backgroundColor: Colors.indigo,
-        body: Center(child: Layer3DAnimation()),
+        body: Center(child: BubbleSize()),
       ),
     );
   }
